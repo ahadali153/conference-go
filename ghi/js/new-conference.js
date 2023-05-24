@@ -1,27 +1,27 @@
 window.addEventListener('DOMContentLoaded', async () => {
-    const locationURL = "http://localhost:8000/api/states/"
+    const locationURL = "http://localhost:8000/api/locations/"
 
     const response = await fetch(locationURL);
 
     if (response.ok) {
         const data = await response.json()
-
-        const selectTag = document.getElementById('state')
-        for (let state of data.states) {
+        console.log(data)
+        const selectTag = document.getElementById('location')
+        for (let location of data.locations) {
             const option = document.createElement('option')
-            option.value = state.abbreviation
-            option.innerHTML = state.name
+            option.value = location.id
+            option.innerHTML = location.name
             selectTag.appendChild(option)
         }
     }
 
-    const formTag = document.getElementById('create-location-form');
-    formTag.addEventListener('submit', async event => {
+    const formTag = document.getElementById('create-conference-form');
+    formTag.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formData = new FormData(formTag)
         const json = JSON.stringify(Object.fromEntries(formData))
-        const locationUrl = 'http://localhost:8000/api/locations/';
+        const conferenceUrl = 'http://localhost:8000/api/conferences/';
         const fetchConfig = {
         method: "post",
         body: json,
@@ -29,10 +29,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             'Content-Type': 'application/json',
         },
         };
-        const response = await fetch(locationUrl, fetchConfig);
+        const response = await fetch(conferenceUrl, fetchConfig);
         if (response.ok) {
         formTag.reset();
-        const newLocation = await response.json();
+        const newConference = await response.json()
+        console.log(newConference);
         }
     })
 });

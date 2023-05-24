@@ -12,6 +12,7 @@ class LocationListEncoder(ModelEncoder):
     properties = [
         "name",
         "picture_url",
+        "id",
         ]
 
 
@@ -239,9 +240,6 @@ def api_list_states(request):
     states = State.objects.all().order_by('name')
     # Create an empty list named state_list
     state_list = []
-    # For each state in the states from the database
-        # Create a dictionary that contains the name and
-        # abbreviation for each state
     for state in states:
         d = {}
         d['name'] = state.name
