@@ -37,11 +37,15 @@ function AttendConferenceForm() {
 		if (response.ok) {
 			const newAttendConference = await response.json();
 			console.log(newAttendConference);
-			setFormData({
-				name: "",
-				email: "",
-				conference: "",
-			});
+			// setFormData({
+			// 	name: "",
+			// 	email: "",
+			// 	conference: "",
+			// });
+			const FormTag = document.getElementById("create-attendee-form");
+			FormTag.classList.add("d-none");
+			const DivSuccessTag = document.getElementById("success-message");
+			DivSuccessTag.classList.remove("d-none");
 		}
 	};
 
