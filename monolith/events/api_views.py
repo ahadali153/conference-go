@@ -25,6 +25,7 @@ class LocationDetailEncoder(ModelEncoder):
         "created",
         "updated",
         "picture_url",
+        "id",
     ]
 
     def get_extra_data(self, o):
@@ -33,7 +34,10 @@ class LocationDetailEncoder(ModelEncoder):
 
 class ConferenceListEncoder(ModelEncoder):
     model = Conference
-    properties = ["name"]
+    properties = [
+                "name",
+                "id",
+                ]
 
 
 class ConferenceDetailEncoder(ModelEncoder):

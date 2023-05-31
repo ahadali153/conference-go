@@ -23,14 +23,13 @@ window.addEventListener("DOMContentLoaded", async () => {
 		const conferenceUrl = "http://localhost:8000/api/conferences/";
 		const fetchConfig = {
 			method: "post",
-			body: json,
+			body: JSON.stringify(data),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		};
 		const response = await fetch(conferenceUrl, fetchConfig);
 		if (response.ok) {
-			formTag.reset();
 		}
 	});
 });
